@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Schema;
 
 namespace AdventOfCode
 {
@@ -6,8 +7,34 @@ namespace AdventOfCode
     {
         public static void Main(string[] args)
         {
-            DayThreePartTwo();
+            DayFourPartOne();
+        }
+
+        public static void DayFourPartOne()
+        {
+            var textFile = File.ReadLines("dayFour.txt").ToList();
+            var randNums = textFile[0];
+            var subtractTotal = 0;
+            var grandTotal = 0;
+            textFile.RemoveAll(x => x == randNums);
+            List<List<string>> horizontalArrays = new List<List<string>>();
+            List<List<string>> verticalArrays = new List<List<string>>();
             
+                //this gets the values of the horizontal array
+                for (int i = 0; i <= 5; i++)
+                {
+                    var temp = textFile[i].Replace("  "," ").Replace(" ","-").Split('-').ToList();
+                    horizontalArrays.Add(temp);
+
+                }
+                //this gets the values of the vertical arrays
+                
+
+
+
+            
+
+
         }
         public static void DayThreePartTwo()
         {
@@ -18,8 +45,77 @@ namespace AdventOfCode
             leastList = text.ToList();
             var oneInstances = 0;
             var zeroInstances = 0;
+            //this loop will find the most common instance (Oxygen generator rating)
+            for (int i = 0; i < 12; i++)
+            {
+                //figure out how many times 1 occurs at x[i]
+                mostList.ForEach(x=> oneInstances += x[i] == '1' ? 1:0);
+                //figure out how many times 0 occurs at x[i]
+                mostList.ForEach(x=> zeroInstances += x[i] == '0' ? 1:0);
+                
+                //if instances of 0 and 1 equal the same keep the one with a one
+                if (zeroInstances == oneInstances)
+                {
+                    mostList.RemoveAll(x => x[i] =='0');
+                }
+                //if instace of 1 is greater keep the one 
+                else if (zeroInstances < oneInstances)
+                {
+                    mostList.RemoveAll(x => x[i] == '0');
+                }
+                //if instance of 0 is bigger keep the zero
+                else if (zeroInstances > oneInstances)
+                {
+                    mostList.RemoveAll(x => x[i] == '1');
+                }
+                
+
+                oneInstances = 0;
+                zeroInstances = 0;
+
+                Console.WriteLine($"There are {mostList.Count} left in the list");
+            }
             
-            
+            //this loop will find the least common instance(CO2 Scrubber)
+
+            for (int i = 0; i < 12; i++)
+            {
+                //figure out how many times 1 occurs at x[i]
+                leastList.ForEach(x=> oneInstances += x[i] == '1' ? 1:0);
+                //figure out how many times 0 occurs at x[i]
+                leastList.ForEach(x=> zeroInstances += x[i] == '0' ? 1:0);
+                
+                //if instances of 0 and 1 equal the same keep the one with a zero
+                if (zeroInstances == oneInstances)
+                {
+                    leastList.RemoveAll(x => x[i] =='1');
+                }
+                //if instace of 1 is greater keep the zero 
+                else if (zeroInstances < oneInstances)
+                {
+                    leastList.RemoveAll(x => x[i] == '1');
+                }
+                //if instance of 0 is bigger keep the one
+                else if (zeroInstances > oneInstances)
+                {
+                    leastList.RemoveAll(x => x[i] == '0');
+                }
+
+                oneInstances = 0;
+                zeroInstances = 0;
+                int total = 0;
+                if (leastList.Count == 1)
+                {
+                    Console.Write($"The last value is: ");
+                    Console.Write(Convert.ToInt32(leastList.First(), 2));
+                    total = Convert.ToInt32(leastList.First(), 2) * Convert.ToInt32(mostList.First(), 2);
+                }
+
+                
+                Console.WriteLine("The total is : "+total);
+
+
+            }
 
 
         }

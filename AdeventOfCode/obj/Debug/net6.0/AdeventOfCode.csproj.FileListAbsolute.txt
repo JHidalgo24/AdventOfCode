@@ -17,3 +17,4 @@ D:\Projects\AdventOfCode\AdeventOfCode\AdeventOfCode\bin\Debug\net6.0\dayOne.txt
 D:\Projects\AdventOfCode\AdeventOfCode\AdeventOfCode\bin\Debug\net6.0\dayTwo.txt
 D:\Projects\AdventOfCode\AdeventOfCode\AdeventOfCode\bin\Debug\net6.0\dayTwoTest.txt
 D:\Projects\AdventOfCode\AdeventOfCode\AdeventOfCode\bin\Debug\net6.0\dayThree.txt
+D:\Projects\AdventOfCode\AdeventOfCode\AdeventOfCode\bin\Debug\net6.0\dayFour.txt
